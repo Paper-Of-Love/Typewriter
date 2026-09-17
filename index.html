@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Typewriter</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Login -->
+  <section class="view" id="loginView">
+    <form class="login-card" id="loginForm">
+      <h1>Typewriter</h1>
+      <p class="login-sub">Sign in to write.</p>
+      <label class="field">
+        <span>Your name</span>
+        <input type="text" id="loginUsername" autocomplete="username" required>
+      </label>
+      <label class="field">
+        <span>Password</span>
+        <input type="password" id="loginPassword" autocomplete="current-password" required>
+      </label>
+      <p class="login-error" id="loginError" hidden></p>
+      <button type="submit" class="btn btn-primary">Sign in</button>
+    </form>
+  </section>
+
+  <!-- Dashboard -->
+  <section class="view" id="dashboardView" hidden>
+    <header class="app-header">
+      <h1>Typewriter</h1>
+      <div class="app-header-actions">
+        <span class="signed-in-as" id="signedInAs"></span>
+        <button class="btn btn-ghost" id="logoutButton">Sign out</button>
+      </div>
+    </header>
+    <main class="dashboard-main">
+      <button class="btn btn-primary new-draft-btn" id="newDraftButton">+ New Draft</button>
+      <ul class="draft-list" id="draftList"></ul>
+      <p class="empty-state" id="emptyState" hidden>No drafts yet. Start one above.</p>
+    </main>
+  </section>
+
+  <!-- Editor -->
+  <section class="view" id="editorView" hidden>
+    <header class="app-header">
+      <button class="btn btn-ghost" id="backButton">&larr; Drafts</button>
+      <span class="save-status" id="saveStatus"></span>
+    </header>
+
+    <main class="editor-main">
+      <p class="comment-banner" id="commentBanner" hidden></p>
+
+      <label class="field">
+        <span>Author</span>
+        <input type="text" id="fieldByline" placeholder="Name to publish under">
+      </label>
+
+      <label class="field">
+        <span>Title</span>
+        <input type="text" id="fieldTitle" placeholder="Post title">
+      </label>
+
+      <div class="field">
+        <span>Header image</span>
+        <div class="image-field">
+          <img class="image-preview" id="headerImagePreview" hidden>
+          <div class="image-field-buttons">
+            <button type="button" class="btn btn-small" id="headerImageUploadBtn">Upload file</button>
+            <button type="button" class="btn btn-small" id="headerImageUrlBtn">Use URL</button>
+            <button type="button" class="btn btn-small btn-danger" id="headerImageClearBtn" hidden>Remove</button>
+          </div>
+          <input type="file" id="headerImageFileInput" accept="image/*" hidden>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <button type="button" class="toolbar-btn" id="boldBtn" title="Bold"><b>B</b></button>
+        <button type="button" class="toolbar-btn" id="italicBtn" title="Italic"><i>I</i></button>
+        <button type="button" class="toolbar-btn" id="underlineBtn" title="Underline"><u>U</u></button>
+        <button type="button" class="toolbar-btn" id="strikeBtn" title="Strikethrough"><s>S</s></button>
+        <button type="button" class="toolbar-btn toolbar-btn-wide" id="insertImageBtn" title="Insert image">Insert image</button>
+      </div>
+
+      <textarea class="body-textarea" id="fieldBody" placeholder="Write your post..."></textarea>
+
+      <div class="editor-footer">
+        <p class="upload-error" id="uploadError" hidden></p>
+        <button type="button" class="btn btn-primary" id="uploadButton">Upload to server</button>
+      </div>
+    </main>
+  </section>
+
+  <!-- Image insert modal (URL entry) -->
+  <div class="modal-overlay" id="imageUrlModal" hidden>
+    <div class="modal">
+      <h2 id="imageUrlModalTitle">Insert image</h2>
+      <label class="field">
+        <span>Image URL</span>
+        <input type="url" id="imageUrlInput" placeholder="https://example.com/photo.jpg">
+      </label>
+      <div class="modal-or">or</div>
+      <button type="button" class="btn btn-small" id="imageUploadBtn">Upload a file</button>
+      <input type="file" id="imageUploadInput" accept="image/*" hidden>
+      <p class="upload-status" id="imageUploadStatus" hidden></p>
+      <label class="field" id="imageAltField">
+        <span>Caption (optional)</span>
+        <input type="text" id="imageAltInput" placeholder="Describe the image">
+      </label>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" id="imageUrlCancel">Cancel</button>
+        <button type="button" class="btn btn-primary" id="imageUrlConfirm">Insert</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="api.js"></script>
+  <script src="editor.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
