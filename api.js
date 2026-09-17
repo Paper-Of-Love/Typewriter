@@ -1,4 +1,4 @@
-const API_BASE = "https://newspaper-backend-w3kl.onrender.com/api";
+const API_BASE = "https://paper-of-love-backend.fly.dev/api";
 const API_ORIGIN = API_BASE.replace(/\/api$/, "");
 
 async function apiRequest(path, options) {
