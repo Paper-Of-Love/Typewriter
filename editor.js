@@ -63,6 +63,11 @@ const Editor = (function () {
     document.getElementById("strikeBtn").addEventListener("click", () => {
       wrapSelection("~~", "~~", "struck text");
     });
+    document.getElementById("linkBtn").addEventListener("click", () => {
+      const url = prompt("Link URL:", "https://");
+      if (!url || !url.trim()) return;
+      wrapSelection("[", `](${url.trim()})`, "link text");
+    });
   }
 
   function setupImageModal() {
